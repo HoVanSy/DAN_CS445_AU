@@ -1,0 +1,93 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Header.master.cs" Inherits="DAN_CS445_AU.Header" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="css/site.css" rel="stylesheet" />
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header class="site-header">
+            <div class="header-top">
+                <div class="header-logo">
+                    <a href="/">
+                        <img src="https://fruitio.monamedia.net/wp-content/uploads/2024/04/Mona-Media-e1712831506867.png" alt="Logo Nông Sản Sạch">
+                    </a>
+                </div>
+                <div class="header-search">
+                    <div style="display: flex; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Đang tìm kiếm...." 
+                            style="flex-grow: 1; border: none; padding: 12px 15px; font-size: 14px; outline: none; min-width: 0;"></asp:TextBox>
+                        <asp:Button ID="btnSearch" runat="server" Text="TÌM KIẾM" OnClick="btnSearch_Click"
+                            style="background-color: #6a9f42; color: white; border: none; padding: 0 20px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap;" />
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <a href="/account" aria-label="Tài khoản">
+                        <i class="fa-regular fa-user"></i>
+                    </a>
+                    <a href="/cart" aria-label="Giỏ hàng">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <a href="/wishlist" aria-label="Yêu thích">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                </div>
+            </div>
+            <nav class="header-nav">
+                <a href="/categories" class="category-menu-button">
+                    <i class="fa-solid fa-bars"></i>
+                    DANH MỤC SẢN PHẨM
+                </a>
+                
+                <!-- Nút toggle cho mobile -->
+                <button type="button" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="/" class="active">Trang chủ</a></li>
+                    <li><a href="/about">Giới thiệu</a></li>
+                    <li><a href="/products">Sản phẩm</a></li>
+                    <li><a href="/news">Tin tức</a></li>
+                    <li><a href="/contact">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            var navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
+        }
+
+        // Đóng menu khi click vào link (trên mobile)
+        document.querySelectorAll('.nav-links a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    document.getElementById('navLinks').classList.remove('show');
+                }
+            });
+        });
+
+        // Đóng menu khi resize về desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('navLinks').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

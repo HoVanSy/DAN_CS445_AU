@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\QuanLyDonHang.aspx" />
+    <Content Include="admin\QuanLySanPham.aspx" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
@@ -128,6 +129,7 @@
   <ItemGroup>
     <Compile Include="admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
@@ -138,6 +140,12 @@
     </Compile>
     <Compile Include="admin\QuanLyDonHang.aspx.designer.cs">
       <DependentUpon>QuanLyDonHang.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\QuanLySanPham.aspx.cs">
+      <DependentUpon>QuanLySanPham.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\QuanLySanPham.aspx.designer.cs">
+      <DependentUpon>QuanLySanPham.aspx</DependentUpon>
     </Compile>
     <Compile Include="khach_hang\DangNhap.aspx.cs">
       <DependentUpon>DangNhap.aspx</DependentUpon>
@@ -162,6 +170,7 @@
     </Compile>
     <Compile Include="khach_vang_lai\Timkiem.aspx.cs">
       <DependentUpon>Timkiem.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="khach_vang_lai\Timkiem.aspx.designer.cs">
       <DependentUpon>Timkiem.aspx</DependentUpon>

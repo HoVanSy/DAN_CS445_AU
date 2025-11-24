@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-    <!-- Font Awesome CDN -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
@@ -50,14 +49,16 @@
             <header class="py-4 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center justify-between">
                     <div class="flex-shrink-0">
-                        <a class="text-3xl font-bold text-heading-light dark:text-heading-dark" href="#">Mona Fruit</a>
+                        <a class="text-3xl font-bold text-heading-light dark:text-heading-dark" href="/">Mona Fruit</a>
                     </div>
+                    
                     <div class="flex-1 max-w-xl mx-8 hidden lg:flex">
                         <div class="relative w-full">
-                            <input class="w-full pl-4 pr-32 py-2.5 border border-gray-300 dark:border-gray-600 rounded-full bg-background-light dark:bg-surface-dark focus:outline-none focus:ring-2 focus:ring-primary/50 dark:text-white" placeholder="Tìm kiếm..." type="text"/>
-                            <button class="absolute right-0 top-0 h-full px-6 bg-primary text-white rounded-r-full flex items-center gap-2 font-semibold">Tìm kiếm
-                                <span class="material-icons-outlined text-xl">search</span>
-                            </button>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="w-full pl-4 pr-32 py-2.5 border border-gray-300 dark:border-gray-600 rounded-full bg-background-light dark:bg-surface-dark focus:outline-none focus:ring-2 focus:ring-primary/50 dark:text-white" placeholder="Tìm kiếm..."></asp:TextBox>
+                            
+                            <asp:LinkButton ID="btnSearch" runat="server" OnClick="btnSearch_Click" CssClass="absolute right-0 top-0 h-full px-6 bg-primary text-white rounded-r-full flex items-center gap-2 font-semibold">
+                                Tìm kiếm <span class="material-icons-outlined text-xl">search</span>
+                            </asp:LinkButton>
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
@@ -73,10 +74,11 @@
                     </div>
                 </div>
             </header>
-        <main>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </main>
+            <main>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </main>
+        </div>
     </form>
 </body>
 </html>

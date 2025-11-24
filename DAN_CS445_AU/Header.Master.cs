@@ -15,11 +15,11 @@ namespace DAN_CS445_AU
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchQuery = txtSearch.Text.Trim();
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                Response.Redirect($"~/search?q={Server.UrlEncode(searchQuery)}");
-            }
+            //string searchQuery = txtSearch.Text.Trim();
+            //if (!string.IsNullOrEmpty(searchQuery))
+            //{
+            //    Response.Redirect($"~/search?q={Server.UrlEncode(searchQuery)}");
+            //}
         }
     }
 }

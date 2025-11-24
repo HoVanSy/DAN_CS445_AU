@@ -5,89 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link href="css/site.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#81c408",
+                        "background-light": "#ffffff",
+                        "background-dark": "#121212",
+                        "surface-light": "#f8f9fa",
+                        "surface-dark": "#1e1e1e",
+                        "text-light": "#4a5568",
+                        "text-dark": "#a0aec0",
+                        "heading-light": "#2d3748",
+                        "heading-dark": "#e2e8f0"
+                    },
+                    fontFamily: {
+                        display: ["Quicksand", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        .material-icons-outlined {
+            font-size: inherit;
+        }
+    </style>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
     <form id="form1" runat="server">
-        <header class="site-header">
-            <div class="header-top">
-                <div class="header-logo">
-                    <a href="/">
-                        <img src="https://fruitio.monamedia.net/wp-content/uploads/2024/04/Mona-Media-e1712831506867.png" alt="Logo Nông Sản Sạch">
-                    </a>
-                </div>
-                <div class="header-search">
-                    <div style="display: flex; border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
-                        <asp:TextBox ID="txtSearch" runat="server" placeholder="Đang tìm kiếm...." 
-                            style="flex-grow: 1; border: none; padding: 12px 15px; font-size: 14px; outline: none; min-width: 0;"></asp:TextBox>
-                        <asp:Button ID="btnSearch" runat="server" Text="TÌM KIẾM" OnClick="btnSearch_Click"
-                            style="background-color: #6a9f42; color: white; border: none; padding: 0 20px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap;" />
+        <div class="max-w-screen-xl mx-auto px-4">
+            <header class="py-4 border-b border-gray-200 dark:border-gray-700">
+                <div class="flex items-center justify-between">
+                    <div class="flex-shrink-0">
+                        <a class="text-3xl font-bold text-heading-light dark:text-heading-dark" href="#">Mona Fruit</a>
+                    </div>
+                    <div class="flex-1 max-w-xl mx-8 hidden lg:flex">
+                        <div class="relative w-full">
+                            <input class="w-full pl-4 pr-32 py-2.5 border border-gray-300 dark:border-gray-600 rounded-full bg-background-light dark:bg-surface-dark focus:outline-none focus:ring-2 focus:ring-primary/50 dark:text-white" placeholder="Tìm kiếm..." type="text"/>
+                            <button class="absolute right-0 top-0 h-full px-6 bg-primary text-white rounded-r-full flex items-center gap-2 font-semibold">Tìm kiếm
+                                <span class="material-icons-outlined text-xl">search</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+                            <span class="material-icons-outlined text-2xl text-heading-light dark:text-heading-dark">person_outline</span>
+                        </a>
+                        <a class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+                            <span class="material-icons-outlined text-2xl text-heading-light dark:text-heading-dark">favorite_border</span>
+                        </a>
+                        <a class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800" href="#">
+                            <span class="material-icons-outlined text-2xl text-heading-light dark:text-heading-dark">shopping_bag_outlined</span>
+                        </a>
                     </div>
                 </div>
-                <div class="header-actions">
-                    <a href="/account" aria-label="Tài khoản">
-                        <i class="fa-regular fa-user"></i>
-                    </a>
-                    <a href="/cart" aria-label="Giỏ hàng">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
-                    <a href="/wishlist" aria-label="Yêu thích">
-                        <i class="fa-regular fa-heart"></i>
-                    </a>
-                </div>
-            </div>
-            <nav class="header-nav">
-                <a href="/categories" class="category-menu-button">
-                    <i class="fa-solid fa-bars"></i>
-                    DANH MỤC SẢN PHẨM
-                </a>
-                
-                <!-- Nút toggle cho mobile -->
-                <button type="button" class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-                
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="/" class="active">Trang chủ</a></li>
-                    <li><a href="/about">Giới thiệu</a></li>
-                    <li><a href="/products">Sản phẩm</a></li>
-                    <li><a href="/news">Tin tức</a></li>
-                    <li><a href="/contact">Liên hệ</a></li>
-                </ul>
-            </nav>
-        </header>
-        <div>
+            </header>
+        <main>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
+        </main>
     </form>
-
-    <script>
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            var navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('show');
-        }
-
-        // Đóng menu khi click vào link (trên mobile)
-        document.querySelectorAll('.nav-links a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    document.getElementById('navLinks').classList.remove('show');
-                }
-            });
-        });
-
-        // Đóng menu khi resize về desktop
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                document.getElementById('navLinks').classList.remove('show');
-            }
-        });
-    </script>
 </body>
 </html>

@@ -119,6 +119,7 @@
     <Content Include="bin\roslyn\VBCSCompiler.exe" />
     <Content Include="css\site.css" />
     <Content Include="khach_hang\DangNhap.aspx" />
+    <Content Include="khach_hang\QuanLyThongTinCaNhan.aspx" />
     <Content Include="khach_vang_lai\DangKiTaiKhoan.aspx" />
     <Content Include="khach_vang_lai\Timkiem.aspx" />
     <Content Include="khach_vang_lai\TrangChu.aspx" />
@@ -154,6 +155,13 @@
     </Compile>
     <Compile Include="khach_hang\DangNhap.aspx.designer.cs">
       <DependentUpon>DangNhap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="khach_hang\QuanLyThongTinCaNhan.aspx.cs">
+      <DependentUpon>QuanLyThongTinCaNhan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="khach_hang\QuanLyThongTinCaNhan.aspx.designer.cs">
+      <DependentUpon>QuanLyThongTinCaNhan.aspx</DependentUpon>
     </Compile>
     <Compile Include="khach_vang_lai\DangKiTaiKhoan.aspx.cs">
       <DependentUpon>DangKiTaiKhoan.aspx</DependentUpon>
@@ -247,4 +255,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  </Project>
+</Project>

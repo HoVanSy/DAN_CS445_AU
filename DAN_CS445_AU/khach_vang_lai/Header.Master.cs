@@ -15,11 +15,14 @@ namespace DAN_CS445_AU
         }
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            //string searchQuery = txtSearch.Text.Trim();
-            //if (!string.IsNullOrEmpty(searchQuery))
-            //{
-            //    Response.Redirect($"~/search?q={Server.UrlEncode(searchQuery)}");
-            //}
+            // 1. Lấy từ khóa từ ô nhập liệu
+            string keyword = txtSearch.Text.Trim();
+
+            // 2. Nếu có từ khóa, chuyển hướng sang trang Timkiem.aspx với tham số query 'q'
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                Response.Redirect("/khach_vang_lai/Timkiem.aspx?q=" + Server.UrlEncode(keyword));
+            }
         }
     }
 }

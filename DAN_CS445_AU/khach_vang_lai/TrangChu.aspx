@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Trang chủ - MonaFruit" Language="C#" MasterPageFile="~/khach_vang_lai/Header.Master" AutoEventWireup="true" CodeBehind="TrangChu.aspx.cs" Inherits="DAN_CS445_AU.TrangChu" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    </asp:Content>
+</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
@@ -12,11 +12,11 @@
             </button>
         </div>
         <div class="hidden lg:flex items-center gap-8 text-heading-light dark:text-heading-dark font-semibold">
-            <a class="hover:text-primary transition" href="#">Trang chủ</a>
-            <a class="hover:text-primary transition" href="#">Giới thiệu</a>
-            <a class="hover:text-primary transition" href="#">Sản phẩm</a>
-            <a class="hover:text-primary transition" href="#">Tin tức</a>
-            <a class="hover:text-primary transition" href="#">Liên hệ</a>
+            <a class="hover:text-primary transition" href="TrangChu.aspx">Trang chủ</a>
+            <a class="hover:text-primary transition" href="GioiThieu.aspx">Giới thiệu</a>
+            <a class="hover:text-primary transition" href="TrangChu.aspx">Sản phẩm</a>
+            <a class="hover:text-primary transition" href="TinTuc.aspx">Tin tức</a>
+            <a class="hover:text-primary transition" href="LienHe.aspx">Liên hệ</a>
         </div>
     </nav>
 
@@ -73,27 +73,30 @@
             
             <asp:Repeater ID="rptSanPham" runat="server">
                 <ItemTemplate>
-                    <div class="bg-white dark:bg-surface-dark rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition group relative">
-                        
-                        <%-- Logic hiển thị nhãn giảm giá --%>
+                    <div class="bg-white dark:bg-surface-dark rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition group relative flex flex-col h-full">
+            
                         <%# Convert.ToInt32(Eval("PhanTramGiam")) > 0 ? 
-                            "<span class='absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded'>-" + Eval("PhanTramGiam") + "%</span>" 
+                            "<span class='absolute top-2 left-2 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm'>-" + Eval("PhanTramGiam") + "%</span>" 
                             : "" %>
 
-                        <div class="h-40 flex items-center justify-center mb-4">
-                            <img src='<%# Eval("HinhAnh") %>' alt='<%# Eval("TieuDe") %>' class="h-full object-contain group-hover:scale-110 transition duration-300">
+                        <div class="relative aspect-square mb-4 overflow-hidden rounded-md">
+                            <img src='<%# Eval("HinhAnh") %>' alt='<%# Eval("TieuDe") %>' class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300" />
                         </div>
-                        
-                        <div class="text-center">
-                            <h3 class="font-bold text-gray-800 dark:text-white mb-1 hover:text-primary cursor-pointer truncate">
+            
+                        <div class="flex-1 flex flex-col text-center">
+                            <h3 class="font-bold text-gray-800 dark:text-white mb-1 hover:text-primary cursor-pointer line-clamp-2">
                                 <%# Eval("TieuDe") %>
                             </h3>
-                            
-                            <p class="text-primary font-bold">
-                                <%# string.Format("{0:N0}₫", Eval("Giá")) %>
-                            </p>
+                
+                            <div class="mt-auto">
+                                <p class="text-primary font-bold text-lg mb-2">
+                                    <%# string.Format("{0:N0}₫", Eval("Giá")) %>
+                                </p>
 
-                            <a href='ChiTietSanPham.aspx?id=<%# Eval("sp_id") %>' class="mt-2 inline-block text-xs text-gray-500 hover:text-primary">Xem chi tiết</a>
+                                <a href='ChiTietSanPham.aspx?id=<%# Eval("sp_id") %>' class="inline-block bg-primary text-white text-sm px-6 py-2 rounded-full hover:bg-green-600 font-semibold transition-colors w-full">
+                                    Mua ngay
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </ItemTemplate>
@@ -123,26 +126,30 @@
     
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
-                    <div class="bg-white dark:bg-surface-dark rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition group relative">
-                        
-                         <%# Convert.ToInt32(Eval("PhanTramGiam")) > 0 ? 
-                            "<span class='absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded'>-" + Eval("PhanTramGiam") + "%</span>" 
+                    <div class="bg-white dark:bg-surface-dark rounded-lg p-4 shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md transition group relative flex flex-col h-full">
+            
+                        <%# Convert.ToInt32(Eval("PhanTramGiam")) > 0 ? 
+                            "<span class='absolute top-2 left-2 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded shadow-sm'>-" + Eval("PhanTramGiam") + "%</span>" 
                             : "" %>
 
-                        <div class="h-40 flex items-center justify-center mb-4">
-                            <img src='<%# Eval("HinhAnh") %>' alt='<%# Eval("TieuDe") %>' class="h-full object-contain group-hover:scale-110 transition duration-300">
+                        <div class="relative aspect-square mb-4 overflow-hidden rounded-md">
+                            <img src='<%# Eval("HinhAnh") %>' alt='<%# Eval("TieuDe") %>' class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300" />
                         </div>
-                        
-                        <div class="text-center">
-                            <h3 class="font-bold text-gray-800 dark:text-white mb-1 hover:text-primary cursor-pointer truncate">
+            
+                        <div class="flex-1 flex flex-col text-center">
+                            <h3 class="font-bold text-gray-800 dark:text-white mb-1 hover:text-primary cursor-pointer line-clamp-2">
                                 <%# Eval("TieuDe") %>
                             </h3>
-                            
-                            <p class="text-primary font-bold">
-                                <%# string.Format("{0:N0}₫", Eval("Giá")) %>
-                            </p>
+                
+                            <div class="mt-auto">
+                                <p class="text-primary font-bold text-lg mb-2">
+                                    <%# string.Format("{0:N0}₫", Eval("Giá")) %>
+                                </p>
 
-                            <a href='ChiTietSanPham.aspx?id=<%# Eval("sp_id") %>' class="mt-2 inline-block text-xs text-gray-500 hover:text-primary">Xem chi tiết</a>
+                                <a href='ChiTietSanPham.aspx?id=<%# Eval("sp_id") %>' class="inline-block bg-primary text-white text-sm px-6 py-2 rounded-full hover:bg-green-600 font-semibold transition-colors w-full">
+                                    Mua ngay
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </ItemTemplate>

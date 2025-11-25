@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Quản lý bài viết" Language="C#" MasterPageFile="~/admin/Admin.Master" AutoEventWireup="true" CodeBehind="QuanLyBaiViet.aspx.cs" Inherits="DAN_CS445_AU.QuanLyBaiViet" %>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <header class="flex flex-wrap justify-between items-center gap-4 mb-6">

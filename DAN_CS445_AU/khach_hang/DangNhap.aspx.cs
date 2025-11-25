@@ -68,9 +68,9 @@ namespace DAN_CS445_AU.khach_hang
                             // 4. Kiểm tra phân quyền để chuyển hướng
                             int roleId = Convert.ToInt32(reader["role_id"]);
 
-                            if (roleId == 1) // 1 là Admin (theo quy ước lúc tạo database)
+                            if (roleId == 1) // 1 là Admin
                             {
-                                Response.Redirect("~/admin/Dashboard.aspx"); // Đường dẫn đến trang Admin
+                                Response.Redirect("~/admin/QuanLyDonHang.aspx");
                             }
                             else
                             {

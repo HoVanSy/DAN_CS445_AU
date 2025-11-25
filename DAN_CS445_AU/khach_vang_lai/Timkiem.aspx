@@ -12,11 +12,11 @@
             </button>
         </div>
         <div class="hidden lg:flex items-center gap-8 text-heading-light dark:text-heading-dark font-semibold">
-            <a class="hover:text-primary" href="#">Trang chủ</a>
-            <a class="hover:text-primary" href="#">Giới thiệu</a>
-            <a class="hover:text-primary" href="#">Sản phẩm</a>
-            <a class="hover:text-primary" href="#">Tin tức</a>
-            <a class="hover:text-primary" href="#">Liên hệ</a>
+            <a class="hover:text-primary transition" href="TrangChu.aspx">Trang chủ</a>
+            <a class="hover:text-primary transition" href="GioiThieu.aspx">Giới thiệu</a>
+            <a class="hover:text-primary transition" href="TrangChu.aspx">Sản phẩm</a>
+            <a class="hover:text-primary transition" href="TinTuc.aspx">Tin tức</a>
+            <a class="hover:text-primary transition" href="LienHe.aspx">Liên hệ</a>
         </div>
     </nav>
 
@@ -51,7 +51,7 @@
                             </p>
                             <div class="mt-auto flex justify-between items-center">
                                 <span class="text-primary font-bold text-xl">
-                                    <%# Eval("Gia", "{0:N0} đ") %>
+                                    <%# Eval("Giá", "{0:N0} đ") %>
                                 </span>
                                 <a href='<%# "ChiTietSanPham.aspx?id=" + Eval("sp_id") %>' class="bg-primary text-white text-sm px-4 py-2 rounded-full hover:opacity-90 font-semibold transition-colors">
                                     Mua ngay

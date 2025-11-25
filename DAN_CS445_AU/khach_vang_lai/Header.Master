@@ -49,7 +49,7 @@
             <header class="py-4 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center justify-between">
                     <div class="flex-shrink-0">
-                        <a class="text-3xl font-bold text-heading-light dark:text-heading-dark" href="/">Mona Fruit</a>
+                        <a class="text-3xl font-bold text-heading-light dark:text-heading-dark" href="TrangChu.aspx">Mona Fruit</a>
                     </div>
                     
                     <div class="flex-1 max-w-xl mx-8 hidden lg:flex">

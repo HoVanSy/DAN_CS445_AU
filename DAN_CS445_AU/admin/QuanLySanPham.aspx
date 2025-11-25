@@ -77,7 +77,7 @@
 
                                     <td class="px-6 py-4"><%# Eval("TenDanhMuc") %></td>
 
-                                    <td class="px-6 py-4"><%# Eval("Gia", "{0:N0}₫") %></td>
+                                    <td class="px-6 py-4"><%# Eval("Giá", "{0:N0}₫") %></td>
 
                                     <td class="px-6 py-4">
                                         <span class='<%# Convert.ToInt32(Eval("SoLuong")) == 0 ? "text-red-500 font-bold" : "" %>'>

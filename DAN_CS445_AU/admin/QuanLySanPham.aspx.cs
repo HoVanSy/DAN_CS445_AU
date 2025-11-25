@@ -28,7 +28,7 @@ namespace DAN_CS445_AU.admin
                 SELECT 
                     s.sp_id, 
                     s.TieuDe, 
-                    s.Gia, 
+                    s.Giá, 
                     s.SoLuong, 
                     s.HinhAnh, 
                     d.TieuDe AS TenDanhMuc 

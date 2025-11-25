@@ -41,7 +41,7 @@ namespace DAN_CS445_AU
                 using (SqlConnection conn = new SqlConnection(MyConnectionString))
                 {
                     // Câu lệnh SQL lấy dữ liệu
-                    string query = @"SELECT sp_id, TieuDe as TenSP, [Giá] as Gia, HinhAnh, 
+                    string query = @"SELECT sp_id, TieuDe as TenSP, [Giá] as Giá, HinhAnh, 
                                      (SELECT TOP 1 TieuDe FROM DanhMucSp WHERE DanhMucSp.dm_id = SanPham.dm_id) as TenNongTrai 
                                      FROM SanPham 
                                      WHERE TieuDe LIKE @keyword";

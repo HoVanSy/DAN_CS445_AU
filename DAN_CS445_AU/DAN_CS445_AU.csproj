@@ -68,6 +68,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\QuanLyDanhMucSanPham.aspx" />
     <Content Include="admin\QuanLyDonHang.aspx" />
     <Content Include="admin\QuanLySanPham.aspx" />
     <Content Include="App_Data\Database1.mdf" />
@@ -135,6 +136,13 @@
     </Compile>
     <Compile Include="admin\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\QuanLyDanhMucSanPham.aspx.cs">
+      <DependentUpon>QuanLyDanhMucSanPham.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\QuanLyDanhMucSanPham.aspx.designer.cs">
+      <DependentUpon>QuanLyDanhMucSanPham.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\QuanLyDonHang.aspx.cs">
       <DependentUpon>QuanLyDonHang.aspx</DependentUpon>

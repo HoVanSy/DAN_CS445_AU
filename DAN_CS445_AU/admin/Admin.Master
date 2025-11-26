@@ -39,6 +39,22 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
         }
+        
+        /* Active menu item styling */
+        .nav-active {
+            color: #4CAF50 !important;
+            font-weight: 700 !important;
+        }
+        
+        .nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -22px;
+            left: 0;
+            height: 2px;
+            width: 100%;
+            background-color: #4CAF50;
+        }
     </style>
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -71,12 +87,10 @@
                             </div>
 
                             <nav class="hidden items-center gap-6 lg:flex">
-                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="Dashboard.aspx">Thống kê</a>
-                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="Orders.aspx">Đơn hàng</a>
-                                <a class="relative text-sm font-bold text-primary transition-colors hover:text-primary dark:hover:text-primary after:absolute after:bottom-[-22px] after:left-0 after:h-0.5 after:w-full after:bg-primary" href="Products.aspx">Sản phẩm</a>
-                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="Categories.aspx">Danh mục</a>
-                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="Articles.aspx">Bài viết</a>
-                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="Vouchers.aspx">Mã giảm giá</a>
+                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="QuanLyDanhMuc.aspx">Quản lý danh mục</a>
+                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="QuanLySanPham.aspx">Quản lý sản phẩm</a>
+                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="QuanLyDonHang.aspx">Quản lý đơn hàng</a>
+                                <a class="relative text-sm font-medium text-text-light dark:text-text-dark/80 transition-colors hover:text-primary dark:hover:text-primary" href="QuanLyNguoiDung.aspx">Người dùng</a>
                             </nav>
                         </div>
 
@@ -97,6 +111,18 @@
                             <div class="relative">
                                 <button type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-cover bg-center bg-no-repeat ring-2 ring-gray-100 dark:ring-gray-700" data-alt="Admin user avatar" id="user-menu-button" style="background-image: url('https://ui-avatars.com/api/?name=Admin&background=random')">
                                 </button>
+                                
+                                <!-- Dropdown Menu (Optional) -->
+                                <div class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5" id="user-menu">
+                                    <div class="py-1" role="menu">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Thông tin</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Cài đặt</a>
+                                        <asp:LinkButton ID="btnLogout" runat="server" OnClick="btnLogout_Click" 
+                                            CssClass="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            Đăng xuất
+                                        </asp:LinkButton>
+                                    </div>
+                                </div>
                             </div>
 
                             <button type="button" aria-label="Open Menu" class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-background-light text-text-light transition-colors hover:bg-gray-100 dark:bg-background-dark/50 dark:text-text-dark dark:hover:bg-border-dark lg:hidden">
@@ -106,11 +132,44 @@
                     </div>
                 </div>
             </header>
+
             <main class="container mx-auto flex-grow p-6">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </main>
-            </div>
+
+            <footer class="border-t border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark/50 py-6">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+                        <p class="text-sm text-text-light/60 dark:text-text-dark/60">
+                            © 2024 MonaFruit. All rights reserved.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-sm text-text-light/60 hover:text-primary dark:text-text-dark/60 dark:hover:text-primary">Điều khoản</a>
+                            <a href="#" class="text-sm text-text-light/60 hover:text-primary dark:text-text-dark/60 dark:hover:text-primary">Chính sách</a>
+                            <a href="#" class="text-sm text-text-light/60 hover:text-primary dark:text-text-dark/60 dark:hover:text-primary">Hỗ trợ</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
     </form>
+
+    <script>
+        // Toggle user menu dropdown
+        document.getElementById('user-menu-button')?.addEventListener('click', function () {
+            const menu = document.getElementById('user-menu');
+            menu?.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            const button = document.getElementById('user-menu-button');
+            const menu = document.getElementById('user-menu');
+            if (button && menu && !button.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 </html>

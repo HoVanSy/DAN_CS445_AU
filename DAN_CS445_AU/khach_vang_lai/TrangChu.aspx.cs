@@ -8,6 +8,7 @@ namespace DAN_CS445_AU
 {
     public partial class TrangChu : System.Web.UI.Page
     {
+        // Lấy chuỗi kết nối từ Web.config
         string connectionString = ConfigurationManager.ConnectionStrings["MyConnectionString"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,44 +20,32 @@ namespace DAN_CS445_AU
             }
         }
 
-        // 1. Hàm tải sản phẩm cho phần "Sản phẩm chất lượng" (Lấy 8 sản phẩm mới nhất)
+        // 1. Sản phẩm mới nhất (Sản phẩm chất lượng)
         private void LoadSanPhamChatLuong()
         {
-            // Query lấy: ID, Tiêu đề, Giá (đổi tên cột thành Gia), Hình ảnh
-            string query = "SELECT TOP 8 sp_id, TieuDe, Giá as Giá, HinhAnh, SoLuong FROM SanPham ORDER BY sp_id DESC";
-
+            // Lấy 8 sản phẩm mới nhất
+            string query = "SELECT TOP 8 sp_id, TieuDe, [Gia] as Gia, HinhAnh, SoLuong, TenNongTrai FROM SanPham ORDER BY sp_id DESC";
             DataTable dt = GetData(query);
-
-            // Xử lý cột giảm giá (nếu DB không có thì tạo giả)
-            if (!dt.Columns.Contains("PhanTramGiam"))
+            if (dt != null)
             {
-                dt.Columns.Add("PhanTramGiam", typeof(int));
-                foreach (DataRow dr in dt.Rows) dr["PhanTramGiam"] = 0; // Mặc định 0%
+                rptSanPham.DataSource = dt;
+                rptSanPham.DataBind();
             }
-
-            rptSanPham.DataSource = dt;
-            rptSanPham.DataBind();
         }
 
-        // 2. Hàm tải sản phẩm cho phần "Bán chạy" (Lấy 4 sản phẩm theo Số lượng)
+        // 2. Sản phẩm bán chạy
         private void LoadSanPhamBanChay()
         {
-            string query = "SELECT TOP 4 sp_id, TieuDe, Giá as Giá, HinhAnh, SoLuong FROM SanPham ORDER BY SoLuong DESC";
-
+            // Lấy 4 sản phẩm bán chạy (theo số lượng)
+            string query = "SELECT TOP 4 sp_id, TieuDe, [Gia] as Gia, HinhAnh, SoLuong, TenNongTrai FROM SanPham ORDER BY SoLuong DESC";
             DataTable dt = GetData(query);
-
-            // Xử lý cột giảm giá giả lập
-            if (!dt.Columns.Contains("PhanTramGiam"))
+            if (dt != null)
             {
-                dt.Columns.Add("PhanTramGiam", typeof(int));
-                foreach (DataRow dr in dt.Rows) dr["PhanTramGiam"] = 10; //bán chạy giảm 10%
+                rptSanPhamBanChay.DataSource = dt;
+                rptSanPhamBanChay.DataBind();
             }
-
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
         }
 
-        // Hàm phụ trợ để lấy dữ liệu cho gọn code
         private DataTable GetData(string query)
         {
             DataTable dt = new DataTable();
@@ -76,8 +65,8 @@ namespace DAN_CS445_AU
             }
             catch (Exception ex)
             {
-                // Ghi log lỗi hoặc thông báo (nếu cần)
-                // Response.Write(ex.Message);
+                // Ghi log lỗi vào Output window để kiểm tra nếu cần
+                System.Diagnostics.Debug.WriteLine(ex.Message);
             }
             return dt;
         }

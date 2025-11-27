@@ -1,6 +1,16 @@
 ﻿<%@ Page Title="Kết quả tìm kiếm" Language="C#" MasterPageFile="Header.master" AutoEventWireup="true" CodeBehind="Timkiem.aspx.cs" Inherits="DAN_CS445_AU.Timkiem" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        /* Ẩn banner quảng cáo ở cuối trang */
+        .banner-section {
+            display: none !important;
+        }
+        /* Ẩn phần tiêu đề thông báo kết quả tìm kiếm */
+        .search-result-header {
+            display: none !important;
+        }
+    </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -22,7 +32,7 @@
 
     <div class="container mx-auto px-4 py-8">
         
-        <div class="mb-8 border-b border-gray-200 pb-4">
+        <div class="mb-8 border-b border-gray-200 pb-4 search-result-header">
             <h1 class="text-3xl font-bold text-heading-light dark:text-heading-dark mb-2">
                 Kết quả tìm kiếm cho: 
                 <asp:Label ID="lblTuKhoa" runat="server" CssClass="text-primary italic"></asp:Label>
@@ -51,7 +61,7 @@
                             </p>
                             <div class="mt-auto flex justify-between items-center">
                                 <span class="text-primary font-bold text-xl">
-                                    <%# Eval("Giá", "{0:N0} đ") %>
+                                    <%# Eval("Gia", "{0:N0} đ") %>
                                 </span>
                                 <a href='<%# "ChiTietSanPham.aspx?id=" + Eval("sp_id") %>' class="bg-primary text-white text-sm px-4 py-2 rounded-full hover:opacity-90 font-semibold transition-colors">
                                     Mua ngay
@@ -71,7 +81,7 @@
 
     </div>
 
-    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-6 container mx-auto px-4">
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-6 container mx-auto px-4 banner-section">
         <div class="lg:col-span-2 bg-surface-light dark:bg-surface-dark rounded-lg p-8 md:p-12 flex items-center bg-no-repeat bg-left-bottom" style="background-image: url('https://fruitio.monamedia.net/wp-content/uploads/2024/04/organic2-slider1.jpg');">
             <div>
                 <p class="text-primary font-bold text-lg">Fresh & Organic</p>

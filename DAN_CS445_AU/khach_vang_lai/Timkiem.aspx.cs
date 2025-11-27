@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient; // Thư viện kết nối SQL
+using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace DAN_CS445_AU
 {
     public partial class Timkiem : System.Web.UI.Page
     {
-        // ==================================================================================
-        // CẤU HÌNH CHUỖI KẾT NỐI (CONNECTION STRING)
-        // ==================================================================================
-        // Lưu ý: Dấu @ đằng trước giúp C# hiểu dấu \ là ký tự thường
-        // Nếu bạn dùng SQL Express: Data Source=.\SQLEXPRESS
-        // Nếu bạn dùng SQL Full:    Data Source=.
+        // Chuỗi kết nối LocalDB chuẩn
         string MyConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,29 +30,27 @@ namespace DAN_CS445_AU
 
         private void LayDuLieuTuSQL(string keyword)
         {
-            // Bọc trong Try-Catch để bắt lỗi nếu kết nối thất bại
             try
             {
                 using (SqlConnection conn = new SqlConnection(MyConnectionString))
                 {
-                    // Câu lệnh SQL lấy dữ liệu
-                    string query = @"SELECT sp_id, TieuDe as TenSP, [Giá] as Giá, HinhAnh, 
+                    // LƯU Ý: Đảm bảo cột trong DB tên là 'Gia' (không dấu) hoặc 'Giá' (có dấu)
+                    // Nếu DB là 'Gia' -> dùng [Gia]
+                    // Nếu DB là 'Giá' -> dùng [Giá] as Gia
+                    string query = @"SELECT sp_id, TieuDe as TenSP, [Gia] as Gia, HinhAnh, 
                                      (SELECT TOP 1 TieuDe FROM DanhMucSp WHERE DanhMucSp.dm_id = SanPham.dm_id) as TenNongTrai 
                                      FROM SanPham 
                                      WHERE TieuDe LIKE @keyword";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        // Thêm tham số để tránh SQL Injection
                         cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
-
-                        conn.Open(); // Mở kết nối (Nếu sai tên Server sẽ lỗi tại đây)
+                        conn.Open();
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
-                        da.Fill(dt); // Đổ dữ liệu vào bảng ảo
+                        da.Fill(dt);
 
-                        // Đổ dữ liệu ra giao diện (Repeater)
                         if (dt.Rows.Count > 0)
                         {
                             rptKetQuaTimKiem.DataSource = dt;
@@ -76,8 +69,7 @@ namespace DAN_CS445_AU
             }
             catch (Exception ex)
             {
-                // Nếu có lỗi, hiện thông báo lỗi lên màn hình thay vì sập web
-                lblTuKhoa.Text = "LỖI KẾT NỐI: " + ex.Message;
+                lblTuKhoa.Text = "LỖI: " + ex.Message;
                 lblTuKhoa.ForeColor = System.Drawing.Color.Red;
             }
         }
